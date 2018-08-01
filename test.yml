@@ -1,0 +1,29 @@
+- hosts: slave
+  user: ansuser
+  tasks:
+    - name: register cron job1
+      cron: 
+        name="check ping"
+        minute="1"
+        hour="2"
+        day="3"
+        month="4"
+        weekday="5"
+        job="ping 192.168.138.128"
+        state=present
+
+    - name: register cron job2
+      cron: 
+        name="check ping2"
+        minute="11"
+        hour="12"
+        day="13"
+        month="6"
+        weekday="7"
+        job="ping 192.168.138.129"
+        state=present
+        disabled=yes
+
+    - cron:
+        name: "state absent"
+        state: absent
